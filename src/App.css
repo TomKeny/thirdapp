@@ -34,3 +34,13 @@
   border-style: solid;
   
 }
+
+#colorsContainer {
+  width: 1000px;
+  padding:15px;
+  background-color: rgb(230,230,230);
+  margin: 20px;
+  border-radius: 10px;
+  margin-left:auto;
+  margin-right: auto;
+}
