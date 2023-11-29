@@ -37,7 +37,7 @@ function App() {
   async function submitHandler (e) {
     e.preventDefault()
     await fetchColor()
-    setContHeight(Math.ceil(Number(Prompt) / 5))
+    setContHeight(Math.ceil(Number(Prompt) / 4))
     setPrompt("")
   }
 
@@ -55,7 +55,7 @@ function App() {
           <ColourNum Prompt={Prompt} setPrompt={setPrompt} setLightDark={setLightDark} Hue={Hue} setHue={setHue} submitHandler={submitHandler} />
         </div>
       </div>
-      {Color.length != 0 && <div id="colorsContainer" style={{aspectRatio: ContHeight + "/4"}}>
+      {Color.length != 0 && <div id="colorsContainer" style={{aspectRatio: "4/" + ContHeight}}>
         {Color.map(function(color,index) {
           return <ColourBox color={color} />
         })}
