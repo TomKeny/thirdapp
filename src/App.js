@@ -8,13 +8,13 @@ function App() {
   const [Color, setColor] = useState([])
   const [Prompt, setPrompt] = useState("")
   const [LightDark, setLightDark] = useState("")
-  const [Hue, setHue] = useState(1)
+  const [Hue, setHue] = useState(50)
   const [ContHeight, setContHeight] = useState(0)
   const [error, setError] = useState(null)
 
   async function fetchColor() { // API link https://github.com/cheatsnake/xColors-api
     try {
-      const url = 'https://x-colors.yurace.pro/api/random/' + Hue + "?number=" + Number(Prompt) + "&" + (LightDark != "" && ("type=" + LightDark));
+      const url = 'https://x-colors.yurace.pro/api/random/' + Math.floor((Hue/100) * 360) + "?number=" + Number(Prompt) + "&" + (LightDark != "" && ("type=" + LightDark));
       const response = await fetch(url, {mode: "cors"})
       console.log(response)
       if (!response.ok) {
