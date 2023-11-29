@@ -1,6 +1,7 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import { ColourNum } from './ColourInfo';
+import  ColourNum  from './ColourInfo';
+import ColourBox from "./ColourBox"
 
 
 function App() {
@@ -10,7 +11,6 @@ function App() {
   const [Hue, setHue] = useState(1)
   const [ContHeight, setContHeight] = useState(0)
   const [error, setError] = useState(null)
-  let height = 0;
 
   async function fetchColor() { // API link https://github.com/cheatsnake/xColors-api
     try {
@@ -37,7 +37,7 @@ function App() {
   async function submitHandler (e) {
     e.preventDefault()
     await fetchColor()
-    setContHeight((Math.ceil(Number(Prompt) / 5)) * 200)
+    setContHeight(Math.ceil(Number(Prompt) / 5))
     setPrompt("")
   }
 
@@ -47,14 +47,17 @@ function App() {
 
   return (
     <div className="App">
-      <ColourNum Prompt={Prompt} setPrompt={setPrompt} setLightDark={setLightDark} Hue={Hue} setHue={setHue} submitHandler={submitHandler} />
-      {Color.length != 0 && <div id="colorsContainer" style={{height: ContHeight}}>
+      <div id="leftContainer">
+        <div id="bigTitle">
+          <h1 id="title">Colour Pallete Generator</h1>
+        </div>
+        <div id="fromContainer">
+          <ColourNum Prompt={Prompt} setPrompt={setPrompt} setLightDark={setLightDark} Hue={Hue} setHue={setHue} submitHandler={submitHandler} />
+        </div>
+      </div>
+      {Color.length != 0 && <div id="colorsContainer" style={{aspectRatio: ContHeight + "/4"}}>
         {Color.map(function(color,index) {
-          return <div id="color" style={{backgroundColor: color.rgb}}>
-            <p id="colorText">Hex: {color.hex}</p>
-            <p id="colorText">{color.rgb}</p>
-            <p id="colorText">{color.hsl}</p>
-          </div>
+          return <ColourBox color={color} />
         })}
       </div>}
     </div>
