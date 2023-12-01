@@ -31,8 +31,8 @@ function ColourNum ({Prompt, setPrompt, setLightDark, Hue, setHue, submitHandler
                         <p id="explainer">higher value is closer to white</p>
                     </div>
                 </div>
-                <h3 style={{color: "hsl(" + Math.floor((Hue/100) * 360) + " ,100% ,50%)"}} id="hueTitle">Hue</h3>
-                <input className="colourSlider" type="range" min="0" max="100" value={Hue} title="Hue" onChange={(e) => setHue(e.target.value)} 
+                <h3 style={{color: "hsl(" + Hue + " ,100% ,50%)"}} id="hueTitle">Hue</h3>
+                <input className="colourSlider" type="range" min="1" max="360" value={Hue} title="Hue" onChange={(e) => setHue(e.target.value)} 
                 style={{backgroundColor: "hsl(" + Hue + " ,100% ,50%)"}}></input> <br></br>
                 <input type="submit" id="Submit"/>
             </label>

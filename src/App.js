@@ -17,7 +17,7 @@ function App() {
 
   async function fetchColor() { // API link https://github.com/cheatsnake/xColors-api
     try {
-      const url = 'https://x-colors.yurace.pro/api/random/' + Math.floor((Hue/100) * 360) + "?number=" + Prompt + "&" + (LightDark != "" && ("type=" + LightDark));
+      const url = 'https://x-colors.yurace.pro/api/random/' + Hue + "?number=" + Prompt + "&" + (LightDark != "" && ("type=" + LightDark));
       const response = await fetch(url, {mode: "cors"})
       console.log(response)
       if (!response.ok) {
@@ -33,7 +33,7 @@ function App() {
       }
       setColor(tempArr)
       setPaletteNum(Color.length)
-      setColors([...Colors, "hsl(" + Math.floor((Hue/100) * 360) + " ,100% ,50%)"])
+      setColors([...Colors, "hsl(" + Hue + " ,100% ,50%)"])
       
       
     } catch (err) {
