@@ -15,7 +15,7 @@ function App() {
   const [ContHeight, setContHeight] = useState([])
   const [error, setError] = useState(null)
 
-  async function fetchColor() { // API link https://github.com/cheatsnake/xColors-api
+  async function fetchColor() { // API info link https://github.com/cheatsnake/xColors-api
     try {
       const url = 'https://x-colors.yurace.pro/api/random/' + Hue + "?number=" + Prompt + "&" + (LightDark != "" && ("type=" + LightDark));
       const response = await fetch(url, {mode: "cors"})
@@ -49,6 +49,62 @@ function App() {
     setPrompt("")
   }
 
+  function SortDescValue() {
+    let tempArr = [...Color[PaletteNum]]
+    let sortArr = []
+    let sortNum = []
+    for (let i = 0; i < tempArr.length; i++) {
+      sortArr.unshift(tempArr[i])
+      sortNum.unshift(GetValue(tempArr[i].hsl))
+      for (let x = 0; x < sortNum.length; x++) {
+        if (sortNum[x] > sortNum[x + 1]) {
+          let temp1 = sortNum[x]
+          let temp2 = sortArr[x]
+          sortNum[x] = sortNum[x + 1]
+          sortArr[x] = sortArr[x + 1]
+          sortNum[x + 1] = temp1
+          sortArr[x + 1] = temp2
+        }
+      }
+    }
+     let arr = [...Color]
+     arr[PaletteNum] = sortArr
+     setColor(arr)
+  }
+
+  function SortAscValue() {
+    let tempArr = [...Color[PaletteNum]]
+    let sortArr = []
+    let sortNum = []
+    for (let i = 0; i < tempArr.length; i++) {
+      sortArr.unshift(tempArr[i])
+      sortNum.unshift(GetValue(tempArr[i].hsl))
+      for (let x = 0; x < sortNum.length; x++) {
+        if (sortNum[x] < sortNum[x + 1]) {
+          let temp1 = sortNum[x]
+          let temp2 = sortArr[x]
+          sortNum[x] = sortNum[x + 1]
+          sortArr[x] = sortArr[x + 1]
+          sortNum[x + 1] = temp1
+          sortArr[x + 1] = temp2
+        }
+      }
+    }
+     let arr = [...Color]
+     arr[PaletteNum] = sortArr
+     setColor(arr)
+  }
+
+  function GetValue(string) {
+    let tempNum = []
+    for (let i = 5; i > 2; i--) {
+        if (!isNaN(Number(string[string.length-i]))) {
+            tempNum.push(string[string.length-i])
+        }
+    }
+    return Number(tempNum.join(""))
+  }
+
   // useEffect(function () {
   //   fetchColor(Prompt)
   // }, [])
@@ -62,6 +118,8 @@ function App() {
         <div id="fromContainer">
           <ColourNum Prompt={Prompt} setPrompt={setPrompt} setLightDark={setLightDark} Hue={Hue} setHue={setHue} submitHandler={submitHandler} />
         </div>
+        <button onClick={() => SortDescValue()}>sort desc</button>
+        <button onClick={() => SortAscValue()}>sort asc</button>
       </div>
       {Color.length != 0 && <div id="colorsContainer" style={{aspectRatio: "4/" + ContHeight[PaletteNum]}}>
         {Colors.map(function(Colour,index) {
