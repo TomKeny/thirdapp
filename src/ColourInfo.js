@@ -28,6 +28,7 @@ function ColourNum ({Prompt, setPrompt, setLightDark, Hue, setHue, submitHandler
                             <label htmlFor="both" className="formText" id="radioValue">Any Value</label>
                             <input type="radio" id="both" name="LightDark" value="" className="radioButton"></input>
                         </div>
+                        <p id="explainer">higher value is closer to white</p>
                     </div>
                 </div>
                 <h3 style={{color: "hsl(" + Math.floor((Hue/100) * 360) + " ,100% ,50%)"}} id="hueTitle">Hue</h3>

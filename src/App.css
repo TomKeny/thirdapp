@@ -106,7 +106,7 @@ body {
 }
 
 #value {
-  width: 60%;
+  width: 80%;
 }
 
 #radioTitle {
@@ -171,4 +171,21 @@ body {
 
 #Submit:hover {
   background-color: rgb(150, 150, 150);
+}
+
+#colorSelector {
+  height: 30px;
+  float: left;
+  margin-bottom: 10px;
+}
+
+#selectorText {
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+#explainer {
+  color: white;
+  padding-top: 35px;
+  font-size: 10px;
 }
